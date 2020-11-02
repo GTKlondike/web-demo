@@ -1,4 +1,6 @@
+import re
 import markdown
+import unicodedata
 
 from handlers.BaseHandler import *
 

@@ -17,13 +17,11 @@
 import aiopg
 import os.path
 import psycopg2
-import re
 import tornado.httpserver
 import tornado.ioloop
 import tornado.locks
 import tornado.options
 import tornado.web
-import unicodedata
 
 from handlers import Application
 
@@ -39,10 +37,6 @@ define("db_user", default="blog", help="blog database user")
 define("db_password", default="blog", help="blog database password")
 
 
-class NoResultError(Exception):
-    pass
-
-
 async def maybe_create_tables(db):
     try:
         with (await db.cursor()) as cur:
@@ -54,12 +48,6 @@ async def maybe_create_tables(db):
         with (await db.cursor()) as cur:
             await cur.execute(schema)
 
-
-
-
-class EntryModule(tornado.web.UIModule):
-    def render(self, entry):
-        return self.render_string("modules/entry.html", entry=entry)
 
 
 async def main():

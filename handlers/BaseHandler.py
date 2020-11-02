@@ -2,6 +2,8 @@ import bcrypt
 import tornado.web
 import tornado.escape
 
+class NoResultError(Exception):
+    pass
 
 class BaseHandler(tornado.web.RequestHandler):
     def row_to_obj(self, row, cur):

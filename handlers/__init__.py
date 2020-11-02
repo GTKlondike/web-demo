@@ -1,11 +1,19 @@
+import tornado.web
+import os.path
+
 from handlers.ArchiveHandler import ArchiveHandler
 from handlers.AuthLoginHandler import AuthLoginHandler
 from handlers.AuthLogoutHandler import AuthLogoutHandler
+from handlers.AuthCreateHandler import AuthCreateHandler
 from handlers.ComposeHandler import ComposeHandler
 from handlers.EntryHandler import EntryHandler
 from handlers.FeedHandler import FeedHandler
 from handlers.HomeHandler import HomeHandler
 
+
+class EntryModule(tornado.web.UIModule):
+    def render(self, entry):
+        return self.render_string("modules/entry.html", entry=entry)
 
 class Application(tornado.web.Application):
     def __init__(self, db):
@@ -22,8 +30,8 @@ class Application(tornado.web.Application):
         ]
         settings = dict(
             blog_title=u"Tornado Blog",
-            template_path=os.path.join(os.path.dirname(__file__), "templates"),
-            static_path=os.path.join(os.path.dirname(__file__), "static"),
+            template_path=os.path.join(os.path.dirname(__file__), "../templates"),
+            static_path=os.path.join(os.path.dirname(__file__), "../static"),
             ui_modules={"Entry": EntryModule},
             xsrf_cookies=True,
             cookie_secret="__TODO:_GENERATE_YOUR_OWN_RANDOM_VALUE_HERE__",

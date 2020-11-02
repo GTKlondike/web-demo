@@ -5,7 +5,7 @@ postgres:
     POSTGRES_PASSWORD: blog
     POSTGRES_DB: blog
   ports:
-    - "3306"
+    - "5432"
 blog:
   build: .
   links:

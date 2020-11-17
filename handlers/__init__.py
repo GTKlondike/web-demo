@@ -9,6 +9,8 @@ from handlers.ComposeHandler import ComposeHandler
 from handlers.EntryHandler import EntryHandler
 from handlers.FeedHandler import FeedHandler
 from handlers.HomeHandler import HomeHandler
+from handlers.GalleryHandler import GalleryHandler
+
 
 
 class EntryModule(tornado.web.UIModule):
@@ -27,6 +29,8 @@ class Application(tornado.web.Application):
             (r"/auth/create", AuthCreateHandler),
             (r"/auth/login", AuthLoginHandler),
             (r"/auth/logout", AuthLogoutHandler),
+            (r"/gallery", GalleryHandler),
+
         ]
         settings = dict(
             blog_title=u"Tornado Blog",

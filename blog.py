@@ -42,11 +42,14 @@ async def maybe_create_tables(db):
         with (await db.cursor()) as cur:
             await cur.execute("SELECT COUNT(*) FROM entries LIMIT 1")
             await cur.fetchone()
+            await cur.execute("DELETE FROM gallery")
     except psycopg2.ProgrammingError:
         with open("schema.sql") as f:
             schema = f.read()
         with (await db.cursor()) as cur:
             await cur.execute(schema)
+
+
 
 
 

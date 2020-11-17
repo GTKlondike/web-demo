@@ -10,6 +10,7 @@ from handlers.EntryHandler import EntryHandler
 from handlers.FeedHandler import FeedHandler
 from handlers.HomeHandler import HomeHandler
 from handlers.GalleryHandler import GalleryHandler
+from handlers.UploadHandler import UploadHandler
 
 
 
@@ -30,6 +31,7 @@ class Application(tornado.web.Application):
             (r"/auth/login", AuthLoginHandler),
             (r"/auth/logout", AuthLogoutHandler),
             (r"/gallery", GalleryHandler),
+            (r"/upload", UploadHandler),
 
         ]
         settings = dict(

@@ -40,4 +40,13 @@ CREATE TABLE entries (
     updated TIMESTAMP NOT NULL
 );
 
+DROP TABLE IF EXISTS gallery;
+CREATE TABLE gallery (
+    id SERIAL PRIMARY KEY,
+    author_id INT NOT NULL REFERENCES authors(id),
+    file_name VARCHAR(100) NOT NULL UNIQUE,
+    description VARCHAR(100) NOT NULL,
+    published TIMESTAMP NOT NULL
+);
+
 CREATE INDEX ON entries (published);
